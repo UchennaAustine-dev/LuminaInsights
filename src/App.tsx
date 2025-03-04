@@ -1,0 +1,32 @@
+"use client";
+
+import { BrowserRouter as Router, Routes, Route } from "react-router-dom";
+import { AnimatePresence } from "framer-motion";
+
+import HomePage from "@/pages/HomePage";
+import ArticlePage from "@/pages/ArticlePage";
+import CategoryPage from "@/pages/CategoryPage";
+import SearchPage from "@/pages/SearchPage";
+import Header from "./components/static/Header";
+import Footer from "./components/static/Footer";
+
+function App() {
+  return (
+    <Router>
+      <div className="min-h-screen flex flex-col ">
+        <Header />
+        <AnimatePresence mode="wait">
+          <Routes>
+            <Route path="/" element={<HomePage />} />
+            <Route path="/article/:id" element={<ArticlePage />} />
+            <Route path="/category/:category" element={<CategoryPage />} />
+            <Route path="/search" element={<SearchPage />} />
+          </Routes>
+        </AnimatePresence>
+        <Footer />
+      </div>
+    </Router>
+  );
+}
+
+export default App;
