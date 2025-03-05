@@ -74,7 +74,7 @@ const ArticleCard = ({
           className={`w-full object-cover ${small ? "h-32" : "h-48"}`}
         />
         <div className="p-4">
-          <span className="text-xs text-emerald-600 font-semibold">
+          <span className="text-xs text-gray-900 font-semibold">
             {category}
           </span>
           <h3

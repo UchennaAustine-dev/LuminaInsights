@@ -7,25 +7,30 @@ import HomePage from "@/pages/HomePage";
 import ArticlePage from "@/pages/ArticlePage";
 import CategoryPage from "@/pages/CategoryPage";
 import SearchPage from "@/pages/SearchPage";
+import Dashboard from "./components/Dashboard";
 import Header from "./components/static/Header";
 import Footer from "./components/static/Footer";
+import { ThemeProvider } from "./components/ThemeProvider";
 
 function App() {
   return (
-    <Router>
-      <div className="min-h-screen flex flex-col ">
-        <Header />
-        <AnimatePresence mode="wait">
-          <Routes>
-            <Route path="/" element={<HomePage />} />
-            <Route path="/article/:id" element={<ArticlePage />} />
-            <Route path="/category/:category" element={<CategoryPage />} />
-            <Route path="/search" element={<SearchPage />} />
-          </Routes>
-        </AnimatePresence>
-        <Footer />
-      </div>
-    </Router>
+    <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      <Router>
+        <div className="min-h-screen flex flex-col">
+          <Header />
+          <AnimatePresence mode="wait">
+            <Routes>
+              <Route path="/" element={<HomePage />} />
+              <Route path="/article/:id" element={<ArticlePage />} />
+              <Route path="/category/:category" element={<CategoryPage />} />
+              <Route path="/search" element={<SearchPage />} />
+              <Route path="/dashboard" element={<Dashboard />} />
+            </Routes>
+          </AnimatePresence>
+          <Footer />
+        </div>
+      </Router>
+    </ThemeProvider>
   );
 }
 

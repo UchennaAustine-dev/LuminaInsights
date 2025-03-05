@@ -123,3 +123,12 @@ const Header = () => {
 };
 
 export default Header;
+
+// "use client"
+// import NotchHeader from "./NotchHeader"
+
+// const Header = () => {
+//   return <NotchHeader />
+// }
+
+// export default Header

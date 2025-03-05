@@ -50,6 +50,7 @@ import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import TableOfContents from "@/components/TableOfContents";
+import AdBanner from "@/components/AdBanner";
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -98,7 +99,7 @@ const ArticlePage = () => {
           {/* Table of Contents */}
           <div className="lg:col-span-1 space-y-6 md:space-y-8">
             <TableOfContents chapters={article.chapters} />
-
+            <AdBanner width="300px" height="250px" />
             {/* Author Card */}
             <div className="bg-muted p-4 md:p-6 rounded-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
@@ -184,6 +185,7 @@ const ArticlePage = () => {
 
           {/* Article Content */}
           <div className="lg:col-span-2">
+            <AdBanner width="100%" height="90px" />
             {article.chapters.map((chapter: any, index: number) => (
               <div
                 key={index}

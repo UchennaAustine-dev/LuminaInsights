@@ -32,7 +32,7 @@ const TableOfContents = ({ chapters }: TableOfContentsProps) => {
   }, [chapters]);
 
   return (
-    <nav className="sticky top-4">
+    <nav className="sticky top-4 bg-white">
       <h3 className="text-lg font-semibold mb-4">Table of Contents</h3>
       <ul className="space-y-2">
         {chapters.map((chapter, index) => (
