@@ -258,13 +258,13 @@ import FeaturedArticle from "@/components/FeaturedArticle";
 
 const ArticleGrid = () => {
   const featuredArticles = articleData.slice(0, 4); // Reduced to 2 featured articles
-  const leftColumnArticles = articleData.slice(4, 10);
+  const leftColumnArticles = articleData.slice(4, 11);
   const rightColumnArticles = articleData.slice(10, 17);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
       {/* Left Column */}
-      <div className="lg:col-span-2 space-y-6">
+      <div className="lg:col-span-2 space-y-12">
         {leftColumnArticles.map((article) => (
           <ArticleCard key={article.id} {...article} small />
         ))}
@@ -278,7 +278,7 @@ const ArticleGrid = () => {
       </div>
 
       {/* Right Column */}
-      <div className="lg:col-span-2 space-y-6">
+      <div className="lg:col-span-2 space-y-12">
         {rightColumnArticles.map((article) => (
           <ArticleCard key={article.id} {...article} small />
         ))}

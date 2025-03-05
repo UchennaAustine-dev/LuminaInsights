@@ -34,7 +34,7 @@ const HeroSection = () => {
   };
 
   return (
-    <div className="relative h-[70vh] overflow-hidden">
+    <div className="relative h-[50vh] md:h-[70vh] overflow-hidden">
       <AnimatePresence initial={false}>
         <motion.div
           key={currentIndex}
@@ -51,10 +51,10 @@ const HeroSection = () => {
           />
           <div className="absolute inset-0 bg-black/50 flex items-center justify-center">
             <div className="text-center text-white max-w-3xl px-4">
-              <h1 className="text-4xl md:text-5xl font-bold mb-4">
+              <h1 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-bold mb-4">
                 {featuredArticles[currentIndex].title}
               </h1>
-              <p className="text-xl mb-6">
+              <p className="text-base sm:text-lg md:text-xl mb-6">
                 {featuredArticles[currentIndex].excerpt}
               </p>
               <Link to={`/article/${featuredArticles[currentIndex].id}`}>
@@ -72,18 +72,18 @@ const HeroSection = () => {
       <Button
         variant="ghost"
         size="icon"
-        className="absolute left-4 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
+        className="absolute left-2 md:left-4 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
         onClick={prevSlide}
       >
-        <ChevronLeft className="h-8 w-8 text-gray-900" />
+        <ChevronLeft className="h-6 w-6 md:h-8 md:w-8 text-gray-900" />
       </Button>
       <Button
         variant="ghost"
         size="icon"
-        className="absolute right-4 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
+        className="absolute right-2 md:right-4 top-1/2 transform -translate-y-1/2 text-white cursor-pointer"
         onClick={nextSlide}
       >
-        <ChevronRight className="h-8 w-8 text-gray-900" />
+        <ChevronRight className="h-6 w-6 md:h-8 md:w-8 text-gray-900" />
       </Button>
     </div>
   );
