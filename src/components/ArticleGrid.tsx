@@ -252,6 +252,9 @@
 // };
 
 // export default ArticleGrid;
+"use client";
+
+import { useEffect } from "react";
 import { articleData } from "@/data/articleData";
 import ArticleCard from "@/components/ArticleCard";
 import FeaturedArticle from "@/components/FeaturedArticle";
@@ -260,6 +263,20 @@ const ArticleGrid = () => {
   const featuredArticles = articleData.slice(0, 4); // Reduced to 2 featured articles
   const leftColumnArticles = articleData.slice(4, 11);
   const rightColumnArticles = articleData.slice(10, 17);
+
+  // Add the Netpub Banner script dynamically
+  useEffect(() => {
+    const script = document.createElement("script");
+    script.type = "text/javascript";
+    script.async = true;
+    script.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
+    document.head.appendChild(script);
+
+    // Cleanup function to remove the script if the component unmounts
+    return () => {
+      document.head.removeChild(script);
+    };
+  }, []);
 
   return (
     <div className="grid grid-cols-1 lg:grid-cols-7 gap-6">
@@ -282,6 +299,14 @@ const ArticleGrid = () => {
         {rightColumnArticles.map((article) => (
           <ArticleCard key={article.id} {...article} small />
         ))}
+
+        {/* Add the Netpub Banner <ins> element here */}
+        <ins
+          className="adv-ac89736c5f18f38e6ab658042a0defa4"
+          data-sizes-desktop="120x600,160x600,200x200,250x250,300x250,300x600,336x280"
+          data-sizes-mobile="160x600,200x200,250x250,300x250,300x600,336x280"
+          data-slot="5"
+        ></ins>
       </div>
     </div>
   );
