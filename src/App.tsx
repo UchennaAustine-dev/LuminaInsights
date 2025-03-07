@@ -11,6 +11,8 @@ import Dashboard from "./components/Dashboard";
 import Header from "./components/static/Header";
 import Footer from "./components/static/Footer";
 import { ThemeProvider } from "./components/ThemeProvider";
+import AboutPage from "./pages/AboutPage";
+import ContactPage from "./pages/ContactPage";
 
 function App() {
   return (
@@ -19,13 +21,17 @@ function App() {
         <div className="min-h-screen flex flex-col">
           <Header />
           <AnimatePresence mode="wait">
-            <Routes>
-              <Route path="/" element={<HomePage />} />
-              <Route path="/article/:id" element={<ArticlePage />} />
-              <Route path="/category/:category" element={<CategoryPage />} />
-              <Route path="/search" element={<SearchPage />} />
-              <Route path="/dashboard" element={<Dashboard />} />
-            </Routes>
+            <main className="flex-grow">
+              <Routes>
+                <Route path="/" element={<HomePage />} />
+                <Route path="/article/:id" element={<ArticlePage />} />
+                <Route path="/category/:category" element={<CategoryPage />} />
+                <Route path="/search" element={<SearchPage />} />
+                <Route path="/dashboard" element={<Dashboard />} />
+                <Route path="/about" element={<AboutPage />} />
+                <Route path="/contact" element={<ContactPage />} />
+              </Routes>
+            </main>
           </AnimatePresence>
           <Footer />
         </div>

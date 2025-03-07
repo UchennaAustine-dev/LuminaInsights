@@ -67,180 +67,185 @@
 // export default Header;
 
 "use client";
-import React, { useState } from "react";
-import { useNavigate, Link } from "react-router-dom";
-import { Search, Menu, X } from "lucide-react";
+
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
+import { Sun, Moon, Search, Menu } from "lucide-react";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
-import { motion, AnimatePresence } from "framer-motion";
+import { useTheme } from "@/components/ThemeProvider";
+import HomeNav from "@/components/nav/HomeNav";
+import CategoriesNav from "@/components/nav/CategoriesNav";
+import AboutNav from "@/components/nav/AboutNav";
+import ContactNav from "@/components/nav/ContactNav";
+import {
+  Sheet,
+  SheetContent,
+  SheetTrigger,
+  SheetClose,
+} from "@/components/ui/sheet";
 
 const Header = () => {
-  const [searchQuery, setSearchQuery] = useState("");
+  const [isSearchOpen, setIsSearchOpen] = useState(false);
   const [isMobileMenuOpen, setIsMobileMenuOpen] = useState(false);
+  const [isScrolled, setIsScrolled] = useState(false);
+  const { theme, setTheme } = useTheme();
   const navigate = useNavigate();
 
-  const handleSearch = (e: React.FormEvent) => {
-    e.preventDefault();
-    navigate(`/search?q=${encodeURIComponent(searchQuery)}`);
-  };
+  useEffect(() => {
+    const handleScroll = () => {
+      setIsScrolled(window.scrollY > 10);
+    };
+    window.addEventListener("scroll", handleScroll);
+    return () => window.removeEventListener("scroll", handleScroll);
+  }, []);
 
   const toggleMobileMenu = () => {
     setIsMobileMenuOpen(!isMobileMenuOpen);
   };
 
-  // Animation variants for the mobile menu
-  const mobileMenuVariants = {
-    open: { opacity: 1, y: 0, transition: { duration: 0.3 } },
-    closed: { opacity: 0, y: -20, transition: { duration: 0.3 } },
+  const closeMobileMenu = () => {
+    setIsMobileMenuOpen(false);
   };
 
-  return (
-    <header className="bg-white shadow-sm sticky top-0 z-50">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-4 flex justify-between items-center">
-        {/* Logo */}
-        <Link
-          to="/"
-          className="text-2xl font-bold text-gray-900 hover:text-gray-700 transition-colors"
-        >
-          Lumina Insights
-        </Link>
+  const handleLogoClick = (e: React.MouseEvent<HTMLAnchorElement>) => {
+    e.preventDefault();
+    window.location.reload();
+    navigate("/");
+  };
 
-        {/* Desktop Navigation */}
-        <nav className="hidden md:flex space-x-6">
+  // Custom event listener for sheet close events from category links
+  useEffect(() => {
+    const handleSheetClose = () => {
+      closeMobileMenu();
+    };
+    document.addEventListener("sheet-close", handleSheetClose);
+    return () => document.removeEventListener("sheet-close", handleSheetClose);
+  }, []);
+
+  return (
+    <header
+      className={`sticky top-0 z-50 w-full ${
+        isScrolled
+          ? "bg-background/95 backdrop-blur supports-[backdrop-filter]:bg-background/60"
+          : "bg-background"
+      } transition-all duration-200`}
+    >
+      <div className="container mx-auto px-4">
+        <div className="flex items-center justify-between h-16">
           <Link
             to="/"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
+            className="text-2xl font-bold text-primary"
+            onClick={handleLogoClick}
           >
-            Home
+            Lumina Insights
           </Link>
-          <Link
-            to="/about"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            About
-          </Link>
-          <Link
-            to="/categories"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            Categories
-          </Link>
-          <Link
-            to="/contact"
-            className="text-gray-600 hover:text-gray-900 transition-colors"
-          >
-            Contact
-          </Link>
-        </nav>
 
-        {/* Search Bar */}
-        <form
-          onSubmit={handleSearch}
-          className="hidden md:flex flex-1 max-w-md mx-4"
-        >
-          <Input
-            type="search"
-            placeholder="Search..."
-            value={searchQuery}
-            onChange={(e) => setSearchQuery(e.target.value)}
-            className="rounded-r-none flex-1"
-            aria-label="Search articles"
-          />
-          <Button
-            type="submit"
-            className="rounded-l-none"
-            aria-label="Submit search"
-          >
-            <Search className="h-4 w-4" />
-          </Button>
-        </form>
+          {/* Desktop Navigation */}
+          <nav className="hidden md:flex items-center space-x-4">
+            <HomeNav />
+            <CategoriesNav />
+            <AboutNav />
+            <ContactNav />
+          </nav>
 
-        {/* Mobile Menu Toggle */}
-        <div className="md:hidden flex items-center space-x-4">
-          <Button
-            variant="ghost"
-            size="icon"
-            onClick={toggleMobileMenu}
-            aria-label="Toggle mobile menu"
-          >
-            {isMobileMenuOpen ? (
-              <X className="h-6 w-6" />
-            ) : (
-              <Menu className="h-6 w-6" />
-            )}
-          </Button>
+          <div className="flex items-center space-x-2">
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setTheme(theme === "dark" ? "light" : "dark")}
+              className="hidden md:inline-flex"
+            >
+              {theme === "dark" ? (
+                <Sun className="h-5 w-5" />
+              ) : (
+                <Moon className="h-5 w-5" />
+              )}
+            </Button>
+            <Button
+              variant="ghost"
+              size="icon"
+              onClick={() => setIsSearchOpen(!isSearchOpen)}
+              className="hidden md:inline-flex"
+            >
+              <Search className="h-5 w-5" />
+            </Button>
+
+            {/* Mobile Menu */}
+            <Sheet open={isMobileMenuOpen} onOpenChange={setIsMobileMenuOpen}>
+              <SheetTrigger asChild>
+                <Button
+                  variant="ghost"
+                  size="icon"
+                  className="md:hidden"
+                  onClick={toggleMobileMenu}
+                >
+                  <Menu className="h-5 w-5" />
+                </Button>
+              </SheetTrigger>
+              <SheetContent side="right" className="w-[300px] sm:w-[400px]">
+                <nav className="flex flex-col space-y-4 mt-8">
+                  <SheetClose asChild>
+                    <HomeNav />
+                  </SheetClose>
+                  <CategoriesNav />
+                  <SheetClose asChild>
+                    <AboutNav />
+                  </SheetClose>
+                  <SheetClose asChild>
+                    <ContactNav />
+                  </SheetClose>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      setTheme(theme === "dark" ? "light" : "dark");
+                      closeMobileMenu();
+                    }}
+                  >
+                    {theme === "dark" ? (
+                      <Sun className="h-5 w-5" />
+                    ) : (
+                      <Moon className="h-5 w-5" />
+                    )}
+                  </Button>
+                  <Button
+                    variant="ghost"
+                    size="icon"
+                    onClick={() => {
+                      setIsSearchOpen(!isSearchOpen);
+                      closeMobileMenu();
+                    }}
+                  >
+                    <Search className="h-5 w-5" />
+                  </Button>
+                </nav>
+              </SheetContent>
+            </Sheet>
+          </div>
         </div>
       </div>
 
-      {/* Mobile Navigation and Search Bar */}
-      <AnimatePresence>
-        {isMobileMenuOpen && (
-          <motion.div
-            initial="closed"
-            animate="open"
-            exit="closed"
-            variants={mobileMenuVariants}
-            className="md:hidden bg-white border-t border-gray-200"
+      {/* Search Bar */}
+      {isSearchOpen && (
+        <div className="bg-background p-4 border-t">
+          <form
+            onSubmit={(e) => {
+              e.preventDefault(); /* Handle search */
+              setIsSearchOpen(false);
+            }}
           >
-            <nav className="flex flex-col space-y-2 px-4 py-2">
-              <Link
-                to="/"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Home
-              </Link>
-              <Link
-                to="/about"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                About
-              </Link>
-              <Link
-                to="/categories"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Categories
-              </Link>
-              <Link
-                to="/contact"
-                className="text-gray-600 hover:text-gray-900 transition-colors"
-              >
-                Contact
-              </Link>
-            </nav>
-            <form onSubmit={handleSearch} className="px-4 py-2">
-              <div className="flex">
-                <Input
-                  type="search"
-                  placeholder="Search..."
-                  value={searchQuery}
-                  onChange={(e) => setSearchQuery(e.target.value)}
-                  className="rounded-r-none flex-1"
-                  aria-label="Search articles"
-                />
-                <Button
-                  type="submit"
-                  className="rounded-l-none"
-                  aria-label="Submit search"
-                >
-                  <Search className="h-4 w-4" />
-                </Button>
-              </div>
-            </form>
-          </motion.div>
-        )}
-      </AnimatePresence>
+            <Input
+              type="search"
+              placeholder="Search articles..."
+              className="w-full"
+              autoFocus
+            />
+          </form>
+        </div>
+      )}
     </header>
   );
 };
 
 export default Header;
-
-// "use client"
-// import NotchHeader from "./NotchHeader"
-
-// const Header = () => {
-//   return <NotchHeader />
-// }
-
-// export default Header
