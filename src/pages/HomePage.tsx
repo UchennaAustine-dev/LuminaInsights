@@ -9,16 +9,25 @@ import LatestInsightsSection from "@/components/LatestInsightsSection";
 import NewsletterSection from "@/components/NewsletterSection";
 
 const HomePage = () => {
-  // Add the Netpub Banner script dynamically
+  // Add the first Netpub Banner script dynamically
   useEffect(() => {
-    const script = document.createElement("script");
-    script.type = "text/javascript";
-    script.async = true;
-    script.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
-    document.head.appendChild(script);
+    const script1 = document.createElement("script");
+    script1.type = "text/javascript";
+    script1.async = true;
+    script1.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
+    document.head.appendChild(script1);
 
+    // Add the second Netpub Banner script dynamically
+    const script2 = document.createElement("script");
+    script2.type = "text/javascript";
+    script2.async = true;
+    script2.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
+    document.head.appendChild(script2);
+
+    // Cleanup function to remove the scripts if the component unmounts
     return () => {
-      document.head.removeChild(script);
+      document.head.removeChild(script1);
+      document.head.removeChild(script2);
     };
   }, []);
 
@@ -35,12 +44,20 @@ const HomePage = () => {
       >
         <HeroSection />
 
-        {/* Add the Netpub Banner <ins> element here */}
+        {/* Add the first Netpub Banner <ins> element */}
         <ins
           className="adv-ac89736c5f18f38e6ab658042a0defa4"
           data-sizes-desktop="120x600"
           data-sizes-mobile="120x600"
           data-slot="1"
+        ></ins>
+
+        {/* Add the second Netpub Banner <ins> element */}
+        <ins
+          className="adv-ac89736c5f18f38e6ab658042a0defa4"
+          data-sizes-desktop="120x600,160x600"
+          data-sizes-mobile="120x600,160x600"
+          data-slot="2"
         ></ins>
 
         <LatestInsightsSection />
