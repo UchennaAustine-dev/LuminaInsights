@@ -24,10 +24,18 @@ const HomePage = () => {
     script2.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
     document.head.appendChild(script2);
 
+    // Add the fourth Netpub Banner script dynamically
+    const script4 = document.createElement("script");
+    script4.type = "text/javascript";
+    script4.async = true;
+    script4.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
+    document.head.appendChild(script4);
+
     // Cleanup function to remove the scripts if the component unmounts
     return () => {
       document.head.removeChild(script1);
       document.head.removeChild(script2);
+      document.head.removeChild(script4);
     };
   }, []);
 
@@ -62,6 +70,17 @@ const HomePage = () => {
 
         <LatestInsightsSection />
         <CategoriesSection />
+
+        {/* Add the fourth Netpub Banner <ins> element here */}
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-8">
+          <ins
+            className="adv-ac89736c5f18f38e6ab658042a0defa4"
+            data-sizes-desktop="200x200,250x250,300x250,336x280,400x350,468x60,640x480,700x300,728x500,728x90,970x90"
+            data-sizes-mobile="200x200,250x250,300x250,300x50,320x100,320x50,336x280,360x100,360x50"
+            data-slot="9"
+          ></ins>
+        </div>
+
         <NewsletterSection />
       </motion.main>
     </>
@@ -69,43 +88,3 @@ const HomePage = () => {
 };
 
 export default HomePage;
-// "use client";
-
-// import { motion } from "framer-motion";
-// import HeroSection from "@/components/HeroSection";
-// import ArticleGrid from "@/components/ArticleGrid";
-// import CategoriesSection from "@/components/CategoriesSection";
-// import { Button } from "@/components/ui/button";
-// import { ArrowRight } from "lucide-react";
-
-// const HomePage = () => {
-//   return (
-//     <motion.main
-//       initial={{ opacity: 0 }}
-//       animate={{ opacity: 1 }}
-//       exit={{ opacity: 0 }}
-//       transition={{ duration: 0.5 }}
-//       className="flex-grow bg-white"
-//     >
-//       <HeroSection />
-//       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-//         <div className="text-center mb-12">
-//           <h2 className="text-3xl font-bold mb-4">Latest Insights</h2>
-//           <p className="text-xl text-gray-600">
-//             Discover bright ideas and insightful stories
-//           </p>
-//         </div>
-//         <ArticleGrid />
-//         <div className="text-center mt-12">
-//           <Button variant="outline" size="lg">
-//             Explore More Insights
-//             <ArrowRight className="ml-2 h-4 w-4" />
-//           </Button>
-//         </div>
-//       </div>
-//       <CategoriesSection />
-//     </motion.main>
-//   );
-// };
-
-// export default HomePage;
