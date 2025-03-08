@@ -1,3 +1,4 @@
+import { useEffect } from "react";
 import { articleData } from "@/data/articleData";
 import ArticleCard from "@/components/ArticleCard";
 import FeaturedArticle from "@/components/FeaturedArticle";
@@ -7,6 +8,20 @@ const ArticleGrid = () => {
   const featuredArticles = articleData.slice(0, 7);
   const leftColumnArticles = articleData.slice(7, 17);
   // const rightColumnArticles = articleData.slice(15, 17);
+
+  // Add the GDPR script dynamically
+  useEffect(() => {
+    const gdprScript = document.createElement("script");
+    gdprScript.type = "text/javascript";
+    gdprScript.src = "https://fstatic.netpub.media/extra/cmp/cmp-gdpr.js";
+    gdprScript.defer = true;
+    document.head.appendChild(gdprScript);
+
+    // Cleanup function to remove the script if the component unmounts
+    return () => {
+      document.head.removeChild(gdprScript);
+    };
+  }, []);
 
   return (
     <div className="relative">
