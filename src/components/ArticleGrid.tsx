@@ -4,9 +4,9 @@ import FeaturedArticle from "@/components/FeaturedArticle";
 import AdBanner from "@/components/ads/AdBanner";
 
 const ArticleGrid = () => {
-  const featuredArticles = articleData.slice(0, 6);
-  const leftColumnArticles = articleData.slice(6, 15);
-  const rightColumnArticles = articleData.slice(15, 17);
+  const featuredArticles = articleData.slice(0, 8);
+  const leftColumnArticles = articleData.slice(8, 17);
+  // const rightColumnArticles = articleData.slice(15, 17);
 
   return (
     <div className="relative">
@@ -47,10 +47,37 @@ const ArticleGrid = () => {
 
         {/* Right Column */}
         <div className="lg:col-span-2 space-y-12">
-          {rightColumnArticles.map((article) => (
+          {/* {rightColumnArticles.map((article) => (
             <ArticleCard key={article.id} {...article} small />
-          ))}
+          ))} */}
 
+          {/* NetPub Ad Banner */}
+          <AdBanner
+            className="sticky top-20 mb-6"
+            adType="fixed"
+            adValue="5"
+            scriptId="ac89736c5f18f38e6ab658042a0defa4"
+            sizesDesktop="120x600"
+            sizesMobile="120x600"
+          />
+          {/* NetPub Ad Banner */}
+          <AdBanner
+            className="sticky top-20 mb-6"
+            adType="fixed"
+            adValue="5"
+            scriptId="ac89736c5f18f38e6ab658042a0defa4"
+            sizesDesktop="120x600"
+            sizesMobile="120x600"
+          />
+          {/* NetPub Ad Banner */}
+          <AdBanner
+            className="sticky top-20 mb-6"
+            adType="fixed"
+            adValue="5"
+            scriptId="ac89736c5f18f38e6ab658042a0defa4"
+            sizesDesktop="120x600"
+            sizesMobile="120x600"
+          />
           {/* NetPub Ad Banner */}
           <AdBanner
             className="sticky top-20 mb-6"
