@@ -93,19 +93,35 @@ const ArticlePage = () => {
         </div>
       </div>
 
+      {/* IAB 678x60 Banner - Top of content */}
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 pt-8">
+        <AdBanner
+          className="mb-8"
+          adType="slot"
+          adValue="8"
+          scriptId="ac89736c5f18f38e6ab658042a0defa4"
+          sizesDesktop="300x50,320x50,468x60,678x60"
+          sizesMobile="300x50,320x50,360x50,468x60,678x60"
+        />
+      </div>
+
       {/* Main Content */}
       <div className="max-w-6xl mx-auto px-4 sm:px-6 py-8 md:py-12">
         <div className="grid grid-cols-1 lg:grid-cols-3 gap-6 md:gap-8">
           {/* Table of Contents */}
           <div className="lg:col-span-1 space-y-6 md:space-y-8">
             <TableOfContents chapters={article.chapters} />
+
+            {/* IAB 200x200 Banner in sidebar */}
             <AdBanner
               className="mb-8"
-              slot="3"
+              adType="slot"
+              adValue="3"
               scriptId="ac89736c5f18f38e6ab658042a0defa4"
-              sizesDesktop="300x250,336x280"
-              sizesMobile="300x250,336x280"
+              sizesDesktop="200x200"
+              sizesMobile="200x200"
             />
+
             {/* Author Card */}
             <div className="bg-muted p-4 md:p-6 rounded-lg">
               <div className="flex items-center gap-3 md:gap-4 mb-3 md:mb-4">
@@ -191,13 +207,16 @@ const ArticlePage = () => {
 
           {/* Article Content */}
           <div className="lg:col-span-2">
+            {/* IAB 300x50 Banner - Before article content */}
             <AdBanner
               className="mb-8"
-              slot="3"
+              adType="slot"
+              adValue="4"
               scriptId="ac89736c5f18f38e6ab658042a0defa4"
-              sizesDesktop="300x250,336x280"
-              sizesMobile="300x250,336x280"
+              sizesDesktop="300x50,320x100,320x50,360x100,360x50"
+              sizesMobile="300x50,320x100,320x50,360x100,360x50"
             />
+
             {article.chapters.map((chapter: any, index: number) => (
               <div
                 key={index}
@@ -221,6 +240,18 @@ const ArticlePage = () => {
                       />
                     ))}
                   </div>
+                )}
+
+                {/* Add IAB 468x60 Banner in the middle of the article */}
+                {index === Math.floor(article.chapters.length / 2) && (
+                  <AdBanner
+                    className="my-8"
+                    adType="slot"
+                    adValue="10"
+                    scriptId="ac89736c5f18f38e6ab658042a0defa4"
+                    sizesDesktop="300x50,320x50,360x50,468x60"
+                    sizesMobile="300x50,320x50,360x50,468x60"
+                  />
                 )}
               </div>
             ))}

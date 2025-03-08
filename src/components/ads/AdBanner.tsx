@@ -4,18 +4,20 @@ import { useEffect, useRef } from "react";
 
 interface AdBannerProps {
   className?: string;
-  slot: string;
   sizesDesktop?: string;
   sizesMobile?: string;
   scriptId: string;
+  adType?: "slot" | "fixed" | "notification";
+  adValue: string;
 }
 
 const AdBanner = ({
   className = "",
-  slot,
   sizesDesktop = "120x600,160x600,200x200,250x250,300x250,300x600,336x280",
   sizesMobile = "160x600,200x200,250x250,300x250,300x600,336x280",
   scriptId,
+  adType = "slot",
+  adValue,
 }: AdBannerProps) => {
   const scriptLoaded = useRef(false);
 
@@ -57,6 +59,19 @@ const AdBanner = ({
     };
   }, [scriptId]);
 
+  // Determine which data attribute to use based on adType
+  const getAdTypeAttribute = () => {
+    switch (adType) {
+      case "fixed":
+        return { "data-fixed": adValue };
+      case "notification":
+        return { "data-notification": adValue };
+      case "slot":
+      default:
+        return { "data-slot": adValue };
+    }
+  };
+
   return (
     <div className={`ad-container ${className}`}>
       <div className="text-xs text-center text-gray-500 mb-2">
@@ -66,7 +81,7 @@ const AdBanner = ({
         className={`adv-${scriptId} block mx-auto`}
         data-sizes-desktop={sizesDesktop}
         data-sizes-mobile={sizesMobile}
-        data-slot={slot}
+        {...getAdTypeAttribute()}
       ></ins>
     </div>
   );
