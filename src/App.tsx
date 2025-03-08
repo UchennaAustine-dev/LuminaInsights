@@ -13,10 +13,16 @@ import Footer from "./components/static/Footer";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import ScriptLoader from "./components/ScriptLoader";
 
 function App() {
   return (
     <ThemeProvider defaultTheme="system" storageKey="vite-ui-theme">
+      {/* NetPub GDPR Compliance Script */}
+      <ScriptLoader
+        src="https://fstatic.netpub.media/extra/cmp/cmp-gdpr.js"
+        defer
+      />
       <Router>
         <div className="min-h-screen flex flex-col">
           <Header />
