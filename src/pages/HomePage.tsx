@@ -31,11 +31,19 @@ const HomePage = () => {
     script4.src = `https://fstatic.netpub.media/static/ac89736c5f18f38e6ab658042a0defa4.min.js?${Date.now()}`;
     document.head.appendChild(script4);
 
+    // Add the GDPR script dynamically
+    const gdprScript = document.createElement("script");
+    gdprScript.type = "text/javascript";
+    gdprScript.src = "https://fstatic.netpub.media/extra/cmp/cmp-gdpr.js";
+    gdprScript.defer = true;
+    document.head.appendChild(gdprScript);
+
     // Cleanup function to remove the scripts if the component unmounts
     return () => {
       document.head.removeChild(script1);
       document.head.removeChild(script2);
       document.head.removeChild(script4);
+      document.head.removeChild(gdprScript);
     };
   }, []);
 
