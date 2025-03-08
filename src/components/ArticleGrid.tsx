@@ -4,8 +4,8 @@ import FeaturedArticle from "@/components/FeaturedArticle";
 import AdBanner from "@/components/ads/AdBanner";
 
 const ArticleGrid = () => {
-  const featuredArticles = articleData.slice(0, 8);
-  const leftColumnArticles = articleData.slice(8, 17);
+  const featuredArticles = articleData.slice(0, 7);
+  const leftColumnArticles = articleData.slice(7, 17);
   // const rightColumnArticles = articleData.slice(15, 17);
 
   return (
