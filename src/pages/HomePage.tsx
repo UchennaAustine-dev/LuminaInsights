@@ -7,6 +7,7 @@ import CategoriesSection from "@/components/CategoriesSection";
 import ScrollToTopButton from "@/components/ScrollToTopButton";
 import LatestInsightsSection from "@/components/LatestInsightsSection";
 import NewsletterSection from "@/components/NewsletterSection";
+import SEO from "@/components/SEO";
 
 const HomePage = () => {
   // Add the first Netpub Banner script dynamically
@@ -58,6 +59,12 @@ const HomePage = () => {
         transition={{ duration: 0.5 }}
         className="flex-grow bg-white"
       >
+        <SEO
+          title="Home"
+          description="Lumina Insights - Illuminating minds with bright ideas and insightful perspectives on technology, lifestyle, health, and more."
+          keywords="blog, insights, articles, technology, lifestyle, health"
+          url="/"
+        />
         <HeroSection />
 
         {/* Add the first Netpub Banner <ins> element */}

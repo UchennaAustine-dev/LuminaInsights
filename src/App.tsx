@@ -11,6 +11,7 @@ import Footer from "./components/static/Footer";
 import { ThemeProvider } from "./components/ThemeProvider";
 import AboutPage from "./pages/AboutPage";
 import ContactPage from "./pages/ContactPage";
+import AdDemonstration from "./pages/AdDemonstration";
 // import ScriptLoader from "./components/ScriptLoader";
 
 function App() {
@@ -34,6 +35,7 @@ function App() {
                 <Route path="/dashboard" element={<Dashboard />} />
                 <Route path="/about" element={<AboutPage />} />
                 <Route path="/contact" element={<ContactPage />} />
+                <Route path="/ad-demonstration" element={<AdDemonstration />} />
               </Routes>
             </main>
           </AnimatePresence>

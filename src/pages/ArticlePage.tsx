@@ -51,6 +51,7 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import TableOfContents from "@/components/TableOfContents";
 import AdBanner from "@/components/ads/AdBanner";
+import SEO from "@/components/SEO";
 
 const ArticlePage = () => {
   const { id } = useParams<{ id: string }>();
@@ -66,6 +67,11 @@ const ArticlePage = () => {
     return <div>Loading...</div>;
   }
 
+  const metaDescription =
+    article.excerpt.length > 160
+      ? `${article.excerpt.substring(0, 157)}...`
+      : article.excerpt;
+
   return (
     <motion.div
       initial={{ opacity: 0 }}
@@ -74,6 +80,17 @@ const ArticlePage = () => {
       transition={{ duration: 0.5 }}
       className="min-h-screen bg-background"
     >
+      <SEO
+        title={article.title}
+        description={metaDescription}
+        keywords={article.tags.join(", ")}
+        author={article.author.name}
+        image={article.heroImage}
+        url={`/article/${article.id}`}
+        type="article"
+        publishedTime={new Date(article.date).toISOString()}
+        articleTags={article.tags}
+      />
       {/* Hero Section */}
       <div className="relative min-h-[40vh] md:h-[60vh] w-full">
         <img

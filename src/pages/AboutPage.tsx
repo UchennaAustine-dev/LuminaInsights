@@ -14,6 +14,7 @@ import {
   ArrowRight,
 } from "lucide-react";
 import { useState } from "react";
+import SEO from "@/components/SEO";
 
 const AboutPage = () => {
   const [selectedTeamFilter, setSelectedTeamFilter] = useState("all");
@@ -52,6 +53,12 @@ const AboutPage = () => {
       variants={containerVariants}
       className="container mx-auto px-4 py-12 md:py-20"
     >
+      <SEO
+        title="About Us"
+        description="Learn about Lumina Insights, our mission, and the team behind our insightful content. Discover how we're illuminating minds with bright ideas."
+        keywords="about us, Lumina Insights, team, mission, blog, content creators"
+        url="/about"
+      />
       {/* Hero Section */}
       <motion.div variants={itemVariants} className="text-center mb-16">
         <h1 className="text-4xl md:text-6xl font-bold mb-6 bg-gradient-to-r from-primary to-primary/70 bg-clip-text text-transparent">
@@ -95,7 +102,7 @@ const AboutPage = () => {
             </div>
             <div className="relative h-full min-h-64 rounded-xl overflow-hidden">
               <img
-                src="/api/placeholder/600/400"
+                src="https://images.pexels.com/photos/3184291/pexels-photo-3184291.jpeg?auto=compress&cs=tinysrgb&w=600"
                 alt="Team collaborating"
                 className="object-cover w-full h-full rounded-xl"
               />
@@ -408,8 +415,10 @@ const teamMembers = [
     role: "Editor-in-Chief",
     department: "editorial",
     bio: "With over 15 years of journalism experience across digital and print media, Emma leads our editorial vision with passion and strategic insight. Her work has been recognized by the International Press Association.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/415829/pexels-photo-415829.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/3184298/pexels-photo-3184298.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "Twitter", icon: <TwitterIcon /> },
       { name: "LinkedIn", icon: <LinkedInIcon /> },
@@ -421,8 +430,10 @@ const teamMembers = [
     role: "Senior Tech Analyst",
     department: "tech",
     bio: "Michael's deep understanding of emerging technologies and market trends helps our readers navigate the ever-changing digital landscape. Previously at TechCrunch, he specializes in AI, blockchain, and consumer tech.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/2379004/pexels-photo-2379004.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/1181675/pexels-photo-1181675.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "Twitter", icon: <TwitterIcon /> },
       { name: "LinkedIn", icon: <LinkedInIcon /> },
@@ -433,8 +444,10 @@ const teamMembers = [
     role: "Environmental Correspondent",
     department: "editorial",
     bio: "Sophia's investigative reporting on climate issues has won multiple awards and inspired meaningful change. Her stories combine scientific rigor with compelling human narratives.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/1130626/pexels-photo-1130626.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/414171/pexels-photo-414171.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "Twitter", icon: <TwitterIcon /> },
       { name: "LinkedIn", icon: <LinkedInIcon /> },
@@ -446,8 +459,10 @@ const teamMembers = [
     role: "Creative Director",
     department: "creative",
     bio: "David brings stories to life through innovative visual design and multimedia storytelling. His background in documentary filmmaking gives our features a unique visual perspective.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/220453/pexels-photo-220453.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/3184454/pexels-photo-3184454.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "LinkedIn", icon: <LinkedInIcon /> },
       { name: "Website", icon: <GlobeIcon /> },
@@ -458,8 +473,10 @@ const teamMembers = [
     role: "Data Journalism Lead",
     department: "tech",
     bio: "Specializing in data visualization and analysis, Aisha transforms complex information into accessible insights. Her work bridges technology and storytelling to reveal hidden patterns.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/774909/pexels-photo-774909.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/3182822/pexels-photo-3182822.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "Twitter", icon: <TwitterIcon /> },
       { name: "LinkedIn", icon: <LinkedInIcon /> },
@@ -470,8 +487,10 @@ const teamMembers = [
     role: "Senior Culture Writer",
     department: "editorial",
     bio: "Marco's thought-provoking analysis of arts, entertainment, and cultural trends has made him a respected voice in cultural criticism. He brings over a decade of experience from major publications.",
-    avatar: "/api/placeholder/150/150",
-    backgroundImage: "/api/placeholder/600/400",
+    avatar:
+      "https://images.pexels.com/photos/91227/pexels-photo-91227.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=150&h=150",
+    backgroundImage:
+      "https://images.pexels.com/photos/2103127/pexels-photo-2103127.jpeg?auto=compress&cs=tinysrgb&fit=crop&w=600&h=400",
     social: [
       { name: "Twitter", icon: <TwitterIcon /> },
       { name: "Website", icon: <GlobeIcon /> },

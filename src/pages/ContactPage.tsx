@@ -17,6 +17,7 @@ import {
   AtSign,
   MessageSquare,
 } from "lucide-react";
+import SEO from "@/components/SEO";
 
 const ContactPage = () => {
   const [formData, setFormData] = useState({
@@ -69,6 +70,12 @@ const ContactPage = () => {
       transition={{ duration: 0.5 }}
       className="container mx-auto px-4 py-12 md:py-20"
     >
+      <SEO
+        title="Contact Us"
+        description="Get in touch with the Lumina Insights team. We'd love to hear from you about feedback, collaborations, or any questions you might have."
+        keywords="contact, get in touch, feedback, questions, support, Lumina Insights"
+        url="/contact"
+      />
       <div className="max-w-4xl mx-auto">
         <motion.div
           initial={{ opacity: 0, y: -10 }}

@@ -5,6 +5,7 @@ import { motion } from "framer-motion";
 import { useState, useEffect } from "react";
 import { articleData } from "@/data/articleData";
 import ArticleCard from "@/components/ArticleCard";
+import SEO from "@/components/SEO";
 
 const SearchPage = () => {
   const [searchParams] = useSearchParams();
@@ -28,6 +29,12 @@ const SearchPage = () => {
       transition={{ duration: 0.5 }}
       className="flex-grow bg-white"
     >
+      <SEO
+        title={`Search Results: ${query}`}
+        description={`Search results for "${query}" on Lumina Insights. Find articles, insights, and content related to your search.`}
+        keywords={`search, ${query}, results, articles, blog`}
+        url={`/search?q=${encodeURIComponent(query)}`}
+      />
       <div className="max-w-6xl mx-auto px-4 py-12">
         <h1 className="text-4xl font-bold mb-8">
           Search Results for "{query}"

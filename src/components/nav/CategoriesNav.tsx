@@ -73,6 +73,12 @@ const CategoriesNav = ({ className }: { className?: string }) => {
                 {category.name}
               </Link>
             ))}
+            <Link
+              to="/ad-demonstration"
+              className="block px-4 py-2 text-sm text-foreground hover:bg-accent hover:text-accent-foreground rounded-md"
+            >
+              Ad Demonstration
+            </Link>
           </div>
         </CollapsibleContent>
       </Collapsible>
